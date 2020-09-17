@@ -1,0 +1,27 @@
+Uuden notesin lisääminen esimerkkisovelluksessa, tapahtumakulku:
+
+Käyttäjä->selain: Uusi muistiinpano tekstikenttään ja painaa nappia tallenna
+Selain->palvelin: lomakkeelle syötetty data (HTTP POST)
+
+Palvelin: Uusi muistiinpano-olio laitetaan notes taulukkoon
+
+Palvelin—>selain :REQUEST URL: https://fullstack-exampleapp.herokuapp.com/new_note, Request Method: POST, Status Code: 302 Found, lataa lokaatio notes uudelleen
+Selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Palvelin->selain: HTML-koodi
+Selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Palvelin->selain: main.css
+Selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Palvelin—>selain: main.js
+
+note over selain:
+selain alkaa suorittaa js-koodia
+joka pyytää JSON-datan palvelimelta
+end note
+
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: [{ content: "HTML on helppoa", date: "2019-01-01" }, ...]
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän
+joka renderöi muistiinpanot näytölle
+end note
